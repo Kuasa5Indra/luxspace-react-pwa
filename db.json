@@ -1,0 +1,48 @@
+{
+    "nodes": [
+      {
+        "description": "A ceramic cup and saucer with a unique design where the cup is tilted in its holder",
+        "id": 1,
+        "image1": "src/assets/contents/image-product-1.jpg",
+        "image2": "src/assets/products/chairs/product-1.jpg",
+        "image3": "src/assets/products/chairs/product-2.jpg",
+        "image4": "src/assets/products/chairs/product-3.jpg",
+        "image5": "src/assets/products/chairs/product-4.jpg",
+        "name": "Cangkir Mauttie",
+        "price": "38000"
+      },
+      {
+        "description": "A small decorative pot or container with a rough texture and three wooden legs",
+        "id": 2,
+        "image1": "src/assets/contents/image-product-2.jpg",
+        "image2": "src/assets/products/chairs/product-1.jpg",
+        "image3": "src/assets/products/chairs/product-2.jpg",
+        "image4": "src/assets/products/chairs/product-3.jpg",
+        "image5": "src/assets/products/chairs/product-4.jpg",
+        "name": "Bankyu Minimax",
+        "price": "67000"
+      },
+      {
+        "description": "A set of two books or notebooks with plain covers and an additional black object on top (possibly a pen or stylus)",
+        "id": 3,
+        "image1": "src/assets/contents/image-product-3.jpg",
+        "image2": "src/assets/products/chairs/product-1.jpg",
+        "image3": "src/assets/products/chairs/product-2.jpg",
+        "image4": "src/assets/products/chairs/product-3.jpg",
+        "image5": "src/assets/products/chairs/product-4.jpg",
+        "name": "Buku Sudi Edition",
+        "price": "120000"
+      },
+      {
+        "description": "A wristwatch placed on top of two notebooks or journals, one open flat and the other partially underneath it",
+        "id": 4,
+        "image1": "src/assets/contents/image-product-4.jpg",
+        "image2": "src/assets/products/chairs/product-1.jpg",
+        "image3": "src/assets/products/chairs/product-2.jpg",
+        "image4": "src/assets/products/chairs/product-3.jpg",
+        "image5": "src/assets/products/chairs/product-4.jpg",
+        "name": "Watch Notes X",
+        "price": "130000"
+      }
+    ]
+  }
