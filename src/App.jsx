@@ -11,12 +11,12 @@ export default function App() {
   const [items, setItems] = useState([])
 
   useEffect(() => {
-    fetch(import.meta.env.VITE_APP_API_URL + '/nodes', {
+    fetch(import.meta.env.VITE_APP_API_URL + '/items', {
       headers: {
         'Content-Type': 'application/json'
       }
     }).then(async (response) => {
-      const nodes = await response.json()
+      const {nodes} = await response.json()
       setItems(nodes)
     }).catch((error) => console.error(error))
   }, [])
