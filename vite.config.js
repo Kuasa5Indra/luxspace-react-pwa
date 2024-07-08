@@ -13,11 +13,42 @@ export default defineConfig({
       config: true,
     },
 
+    includeAssets: ['favicon.svg', 'apple-touch-icon.png'],
+
     manifest: {
-      name: 'luxspace-react-pwa',
-      short_name: 'luxspace-react-pwa',
+      name: 'LuxSpace',
+      short_name: 'LuxSpace PWA',
       description: 'Aplikasi Luxspace menggunakan React dan berbasis PWA',
       theme_color: '#ffffff',
+      start_url: "/",
+      display: "standalone",
+      background_color: "#FFFFFF",
+      icons: [
+        {
+          src: "/pwa-192x192.png",
+          sizes: "192x192",
+          type: "image/png",
+          purpose: "any"
+        },
+        {
+          src: "/pwa-512x512.png",
+          sizes: "512x512",
+          type: "image/png",
+          purpose: "any"
+        },
+        {
+          src: "/pwa-maskable-192x192.png",
+          sizes: "192x192",
+          type: "image/png",
+          purpose: "maskable"
+        },
+        {
+          src: "/pwa-maskable-512x512.png",
+          sizes: "512x512",
+          type: "image/png",
+          purpose: "maskable"
+        }
+      ]
     },
 
     workbox: {
