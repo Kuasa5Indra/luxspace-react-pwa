@@ -7,6 +7,7 @@ import Clients from './components/Clients';
 import FooterMenu from './components/FooterMenu';
 import Footer from './components/Footer';
 import Offline from './components/Offline';
+import Splash from './components/pages/Splash';
 
 import ImageProduct1 from './assets/contents/image-product-1.jpg'
 import ImageProduct2 from './assets/contents/image-product-2.jpg'
@@ -16,6 +17,7 @@ import ImageProduct5 from './assets/contents/image-product-5.jpg'
 
 export default function App() {
   const [offlineStatus, setOfflineStatus] = useState(!navigator.onLine)
+  const [isLoading, setIsLoading] = useState(true)
   const [items, setItems] = useState([
     {
       'name': 'Cangkir Mauttie',
@@ -54,7 +56,7 @@ export default function App() {
         'Content-Type': 'application/json'
       }
     }).then(async (response) => {
-      const {nodes} = await response.json()
+      const { nodes } = await response.json()
       setItems(nodes)
       const script = document.createElement("script")
       script.src = "/carousel.js"
@@ -65,7 +67,11 @@ export default function App() {
     window.addEventListener('online', handleOfflineStatus)
     window.addEventListener('offline', handleOfflineStatus)
 
-    return function() {
+    setTimeout(() => {
+      setIsLoading(false)
+    }, 1500);
+
+    return function () {
       window.removeEventListener('online', handleOfflineStatus)
       window.removeEventListener('offline', handleOfflineStatus)
     }
@@ -73,14 +79,18 @@ export default function App() {
 
   return (
     <>
-      {offlineStatus && <Offline />}
-      <Header />
-      <Hero />
-      <Browse />
-      <Arrived items={items} />
-      <Clients />
-      <FooterMenu />
-      <Footer />
+      {isLoading ? <Splash /> : (
+        <>
+          {offlineStatus && <Offline />}
+          <Header />
+          <Hero />
+          <Browse />
+          <Arrived items={items} />
+          <Clients />
+          <FooterMenu />
+          <Footer />
+        </>
+      )}
     </>
   )
 }
