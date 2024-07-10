@@ -8,6 +8,7 @@ import {
 } from "react-router-dom"
 
 import Profile from './components/pages/Profile.jsx'
+import Details from './components/pages/Details.jsx'
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
   {
     path: "/profile",
     element: <Profile />
+  },
+  {
+    path: "/details/:id",
+    element: <Details />
   }
 ]);
 

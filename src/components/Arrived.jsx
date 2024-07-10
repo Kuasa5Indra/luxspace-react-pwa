@@ -17,7 +17,7 @@ function Arrived({items}) {
       <div className="flex -mx-4 flex-row relative">
         {items.map((item, key) => {
           return (
-            <ItemCarousel key={key} productName={item.name} price={item.price} image={item.image1}/>
+            <ItemCarousel key={key} item={item}/>
           )
         })}
       </div>

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function priceFormat(price){
     const currency = Intl.NumberFormat("id-ID", {
@@ -9,17 +10,17 @@ function priceFormat(price){
     return currency.format(price)
 }
 
-function ItemCarousel({image, productName, price}) {
+function ItemCarousel({item}) {
     return (
         <div className="px-4 relative card">
             <div className="rounded-xl overflow-hidden card-shadow" style={{ width: "287px", height: "386px" }}>
-                <img src={image} alt="" className="w-full h-full object-cover object-center" />
+                <img src={item.image1} alt="" className="w-full h-full object-cover object-center" />
             </div>
-            <h5 className="text-lg font-semibold mt-4">{productName}</h5>
-            <span>{priceFormat(price)}</span>
-            <a href="/" className="stretched-link">
+            <h5 className="text-lg font-semibold mt-4">{item.name}</h5>
+            <span>{priceFormat(item.price)}</span>
+            <Link to={`/details/${item.id}`} state={{data: item}} className="stretched-link">
                 {/* <!-- fake children --> */}
-            </a>
+            </Link>
         </div>
     )
 }

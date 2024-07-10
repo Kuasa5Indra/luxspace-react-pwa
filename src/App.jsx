@@ -82,7 +82,7 @@ export default function App() {
       {isLoading ? <Splash /> : (
         <>
           {offlineStatus && <Offline />}
-          <Header />
+          <Header mode={'main'} />
           <Hero />
           <Browse />
           <Arrived items={items} />

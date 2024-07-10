@@ -1,9 +1,9 @@
 import React from 'react'
 import logo from "../assets/logo.svg"
 
-function Header() {
+function Header({mode}) {
     return (
-        <header className="absolute w-full z-50 px-4">
+        <header className={`${mode === 'main' ? 'absolute' : ''} w-full z-50 px-4`}>
             <div className="container mx-auto py-10">
                 <div className="flex items-center">
                     <div className="flex w-55 items-center">
@@ -15,16 +15,16 @@ function Header() {
                         <ul id="menu" className="fixed bg-white inset-0 flex flex-col invisible items-center justify-center
             opacity-0 md:visible md:flex-row md:bg-transparent md:relative md:opacity-100">
                             <li className="mx-3 py-6 md:py-0">
-                                <a href="#" className="text-black hover:text-white hover:underline">Showcase</a>
+                                <a href="#" className={`text-black ${mode === 'main' ? 'hover:text-white' : ''} hover:underline`}>Showcase</a>
                             </li>
                             <li className="mx-3 py-6 md:py-0">
-                                <a href="#" className="text-black hover:text-white hover:underline">Catalog</a>
+                                <a href="#" className={`text-black ${mode === 'main' ? 'hover:text-white' : ''} hover:underline`}>Catalog</a>
                             </li>
                             <li className="mx-3 py-6 md:py-0">
-                                <a href="#" className="text-black hover:text-white hover:underline">Delivery</a>
+                                <a href="#" className={`text-black ${mode === 'main' ? 'hover:text-white' : ''} hover:underline`}>Delivery</a>
                             </li>
                             <li className="mx-3 py-6 md:py-0">
-                                <a href="#" className="text-black hover:text-white hover:underline">Rewards</a>
+                                <a href="#" className={`text-black ${mode === 'main' ? 'hover:text-white' : ''} hover:underline`}>Rewards</a>
                             </li>
                         </ul>
                     </div>
