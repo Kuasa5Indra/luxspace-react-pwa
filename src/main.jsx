@@ -9,6 +9,7 @@ import {
 
 import Profile from './components/pages/Profile.jsx'
 import Details from './components/pages/Details.jsx'
+import Cart from './components/pages/Cart.jsx'
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
   {
     path: "/details/:id",
     element: <Details />
+  },
+  {
+    path: "/cart",
+    element: <Cart />
   }
 ]);
 

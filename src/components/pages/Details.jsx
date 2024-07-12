@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Footer from '../Footer'
 import FooterMenu from '../FooterMenu'
 import Header from '../Header'
@@ -22,7 +22,7 @@ function priceFormat(price) {
 function Details() {
     let { state } = useLocation()
 
-    console.log(state)
+    const [currentImage, setCurrentImage] = useState(state.data.image1)
 
     return (
         <>
@@ -40,35 +40,35 @@ function Details() {
                         <div className="slider">
                             <div className="thumbnail">
                                 <div className="px-2">
-                                    <div className="item" data-img={state.data.image1}>
+                                    <div className={`item ${currentImage === state.data.image1 && 'selected'}`} onClick={() => setCurrentImage(state.data.image1)}>
                                         <img src={state.data.image1} alt={state.data.name}
                                             className="object-cover w-full h-full rounded-lg" />
                                     </div>
                                 </div>
 
                                 <div className="px-2">
-                                    <div className="item" data-img={state.data.image2}>
+                                    <div className={`item ${currentImage === state.data.image2 && 'selected'}`} onClick={() => setCurrentImage(state.data.image2)}>
                                         <img src={state.data.image2} alt={state.data.name}
                                             className="object-cover w-full h-full rounded-lg" />
                                     </div>
                                 </div>
 
                                 <div className="px-2">
-                                    <div className="item selected" data-img={state.data.image3}>
+                                    <div className={`item ${currentImage === state.data.image3 && 'selected'}`} onClick={() => setCurrentImage(state.data.image3)}>
                                         <img src={state.data.image3} alt={state.data.name}
                                             className="object-cover w-full h-full rounded-lg" />
                                     </div>
                                 </div>
 
                                 <div className="px-2">
-                                    <div className="item" data-img={state.data.image4}>
+                                    <div className={`item ${currentImage === state.data.image4 && 'selected'}`} onClick={() => setCurrentImage(state.data.image4)}>
                                         <img src={state.data.image4} alt={state.data.name}
                                             className="object-cover w-full h-full rounded-lg" />
                                     </div>
                                 </div>
 
                                 <div className="px-2">
-                                    <div className="item" data-img={state.data.image5}>
+                                    <div className={`item ${currentImage === state.data.image5 && 'selected'}`} onClick={() => setCurrentImage(state.data.image5)}>
                                         <img src={state.data.image5} alt={state.data.name}
                                             className="object-cover w-full h-full rounded-lg" />
                                     </div>
@@ -76,7 +76,7 @@ function Details() {
                             </div>
                             <div className="preview">
                                 <div className="item rounded-lg h-full overflow-hidden">
-                                    <img src={state.data.image1} alt={state.data.name}
+                                    <img src={currentImage} alt={state.data.name}
                                         className="object-cover w-full h-full rounded-lg" />
                                 </div>
                             </div>
