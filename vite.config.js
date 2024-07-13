@@ -64,4 +64,5 @@ export default defineConfig({
       type: 'module',
     },
   })],
+  base: '/luxspace-react-pwa/'
 })
