@@ -15,16 +15,25 @@ import Product1 from '../../assets/products/chairs/product-1.png'
 import Product2 from '../../assets/products/chairs/product-2.png'
 import Product3 from '../../assets/products/chairs/product-3.png'
 
-function Cart() {
+function priceFormat(price) {
+    const currency = Intl.NumberFormat("id-ID", {
+        style: 'currency',
+        currency: 'IDR'
+    })
+
+    return currency.format(price)
+}
+
+function Cart({ cart, handleRemoveCartItem }) {
     return (
         <>
-            <Header mode={'alt'} />
+            <Header mode={'alt'} cart={cart} />
 
             <section className="bg-gray-100 py-8 px-4">
                 <div className="container mx-auto">
                     <ul className="breadcrumb">
                         <li>
-                            <Link href="/">Home</Link>
+                            <Link to="/">Home</Link>
                         </li>
                         <li>
                             <a href="#" aria-label="current-page">Shopping Cart</a>
@@ -43,7 +52,7 @@ function Cart() {
                             <div className="border-b border-gray-200 mb-4 hidden md:block">
                                 <div className="flex flex-start items-center pb-2 -mx-4">
                                     <div className="px-4 flex-none">
-                                        <div className="" style={{width: "90px"}}>
+                                        <div className="" style={{ width: "90px" }}>
                                             <h6>Photo</h6>
                                         </div>
                                     </div>
@@ -65,105 +74,46 @@ function Cart() {
                                 </div>
                             </div>
 
-                            <p id="cart-empty" className="hidden text-center py-8">
-                                Oops... Cart is empty <a href="details.html" className="underline">Shop Now!</a>
-                            </p>
-
-                            <div className="flex flex-start flex-wrap items-center mb-4 -mx-4" data-row="1">
-                                <div className="px-4 flex-none">
-                                    <div style={{width: "90px", height: "90px"}}>
-                                        <img src={Product1} alt=""
-                                            className="object-cover rounded-xl w-full h-full" />
+                            {cart.length > 0 ? cart.map((item, key) => {
+                                return (
+                                    <div className="flex flex-start flex-wrap items-center mb-4 -mx-4" key={key}>
+                                        <div className="px-4 flex-none">
+                                            <div style={{ width: "90px", height: "90px" }}>
+                                                <img src={item.image1} alt=""
+                                                    className="object-cover rounded-xl w-full h-full" />
+                                            </div>
+                                        </div>
+                                        <div className="px-4 w-auto md:w-5/12 flex-1">
+                                            <div>
+                                                <h6 className="font-semibold text-lg md:text-xl leading-8">{item.name}</h6>
+                                                <span className="text-sm md:text-lg">Office Room</span>
+                                                <h6 className="font-semibold text-base md:text-lg block md:hidden">
+                                                    {priceFormat(item.price)}
+                                                </h6>
+                                            </div>
+                                        </div>
+                                        <div className="px-4 w-auto md:w-5/12 flex-none md:flex-1 hidden md:block">
+                                            <div className="">
+                                                <h6 className="font-semibold text-lg">
+                                                    {priceFormat(item.price)}
+                                                </h6>
+                                            </div>
+                                        </div>
+                                        <div className="px-4 w-2/12">
+                                            <div className="text-center">
+                                                <button className="text-red-600 border-none focus:outline-none px-3 py-1" onClick={(e) => handleRemoveCartItem(e, item.id)}>
+                                                    X
+                                                </button>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div className="px-4 w-auto md:w-5/12 flex-1">
-                                    <div>
-                                        <h6 className="font-semibold text-lg md:text-xl leading-8">Chair Thatty</h6>
-                                        <span className="text-sm md:text-lg">Office Room</span>
-                                        <h6 className="font-semibold text-base md:text-lg block md:hidden">
-                                            IDR 89.300,000
-                                        </h6>
-                                    </div>
-                                </div>
-                                <div className="px-4 w-auto md:w-5/12 flex-none md:flex-1 hidden md:block">
-                                    <div className="">
-                                        <h6 className="font-semibold text-lg">
-                                            IDR 89.300,000
-                                        </h6>
-                                    </div>
-                                </div>
-                                <div className="px-4 w-2/12">
-                                    <div className="text-center">
-                                        <button className="text-red-600 border-none focus:outline-none px-3 py-1" data-delete-item="1">
-                                            X
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="flex flex-start flex-wrap items-center mb-4 -mx-4" data-row="2">
-                                <div className="px-4 flex-none">
-                                    <div style={{width: "90px", height: "90px"}}>
-                                        <img src={Product2} alt=""
-                                            className="object-cover rounded-xl w-full h-full" />
-                                    </div>
-                                </div>
-                                <div className="px-4 w-auto md:w-5/12 flex-1">
-                                    <div>
-                                        <h6 className="font-semibold text-lg md:text-xl leading-8">General Chair</h6>
-                                        <span className="text-sm md:text-lg">Office Room</span>
-                                        <h6 className="font-semibold text-base md:text-lg block md:hidden">
-                                            IDR 78.000,000
-                                        </h6>
-                                    </div>
-                                </div>
-                                <div className="px-4 w-auto md:w-5/12 flex-none md:flex-1 hidden md:block">
-                                    <div className="">
-                                        <h6 className="font-semibold text-lg">
-                                            IDR 78.000,000
-                                        </h6>
-                                    </div>
-                                </div>
-                                <div className="px-4 w-2/12">
-                                    <div className="text-center">
-                                        <button className="text-red-600 border-none focus:outline-none px-3 py-1" data-delete-item="2">
-                                            X
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="flex flex-start flex-wrap items-center mb-4 -mx-4" data-row="3">
-                                <div className="px-4 flex-none">
-                                    <div style={{width: "90px", height: "90px"}}>
-                                        <img src={Product3} alt=""
-                                            className="object-cover rounded-xl w-full h-full" />
-                                    </div>
-                                </div>
-                                <div className="px-4 w-auto md:w-5/12 flex-1">
-                                    <div>
-                                        <h6 className="font-semibold text-lg md:text-xl leading-8">Gaming Chair</h6>
-                                        <span className="text-sm md:text-lg">Office Room</span>
-                                        <h6 className="font-semibold text-base md:text-lg block md:hidden">
-                                            IDR 14.000,000
-                                        </h6>
-                                    </div>
-                                </div>
-                                <div className="px-4 w-auto md:w-5/12 flex-none md:flex-1 hidden md:block">
-                                    <div className="">
-                                        <h6 className="font-semibold text-lg">
-                                            IDR 14.000,000
-                                        </h6>
-                                    </div>
-                                </div>
-                                <div className="px-4 w-2/12">
-                                    <div className="text-center">
-                                        <button className="text-red-600 border-none focus:outline-none px-3 py-1" data-delete-item="3">
-                                            X
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
+                                )
+                            })
+                                : (
+                                    <p id="cart-empty" className="text-center py-8">
+                                        Oops... Cart is empty <Link to='/' className="underline">Shop Now!</Link>
+                                    </p>
+                                )}
 
                         </div>
 
@@ -175,31 +125,31 @@ function Cart() {
                                     </div>
 
                                     <div className="flex flex-col mb-4">
-                                        <label for="complete-name" className="text-sm mb-2">Complete Name</label>
+                                        <label htmlFor="complete-name" className="text-sm mb-2">Complete Name</label>
                                         <input type="text" id="complete-name" data-input
                                             className="border border-gray-200 rounded-lg px-4 py-2 bg-white text-sm focus:border-blue-200 focus:outline-none"
                                             placeholder="Input your name" />
                                     </div>
                                     <div className="flex flex-col mb-4">
-                                        <label for="email-address" className="text-sm mb-2">Email Address</label>
+                                        <label htmlFor="email-address" className="text-sm mb-2">Email Address</label>
                                         <input type="email" id="email-address" data-input
                                             className="border border-gray-200 rounded-lg px-4 py-2 bg-white text-sm focus:border-blue-200 focus:outline-none"
                                             placeholder="Input your email" />
                                     </div>
                                     <div className="flex flex-col mb-4">
-                                        <label for="address" className="text-sm mb-2">Address</label>
+                                        <label htmlFor="address" className="text-sm mb-2">Address</label>
                                         <input type="text" id="address" data-input
                                             className="border border-gray-200 rounded-lg px-4 py-2 bg-white text-sm focus:border-blue-200 focus:outline-none"
                                             placeholder="Input your address" />
                                     </div>
                                     <div className="flex flex-col mb-4">
-                                        <label for="phone-number" className="text-sm mb-2">Phone Number</label>
+                                        <label htmlFor="phone-number" className="text-sm mb-2">Phone Number</label>
                                         <input type="tel" id="phone-number" data-input
                                             className="border border-gray-200 rounded-lg px-4 py-2 bg-white text-sm focus:border-blue-200 focus:outline-none"
                                             placeholder="Input your phone number" />
                                     </div>
                                     <div className="flex flex-col mb-4">
-                                        <label for="courier" className="text-sm mb-2">Choose Courier</label>
+                                        <label htmlFor="courier" className="text-sm mb-2">Choose Courier</label>
 
                                         <div className="flex -mx-2 flex-wrap">
                                             <div className="px-2 w-6/12 h-24 mb-4">
@@ -222,7 +172,7 @@ function Cart() {
                                             placeholder="Input your phone number" /> */}
                                     </div>
                                     <div className="flex flex-col mb-4">
-                                        <label for="payment" className="text-sm mb-2">Choose Payment</label>
+                                        <label htmlFor="payment" className="text-sm mb-2">Choose Payment</label>
                                         <div className="flex -mx-2 flex-wrap">
                                             <div className="px-2 w-6/12 h-24 mb-4">
                                                 <button type="button" data-value="midtrans" data-name="payment"
@@ -269,7 +219,7 @@ function Cart() {
 
                     </div>
                 </div>
-            </section>
+            </section >
 
             <FooterMenu />
 

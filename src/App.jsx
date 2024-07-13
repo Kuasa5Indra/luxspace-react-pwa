@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Header from "./components/Header";
 import Hero from './components/Hero';
 import Browse from './components/Browse';
@@ -9,13 +10,17 @@ import Footer from './components/Footer';
 import Offline from './components/Offline';
 import Splash from './components/pages/Splash';
 
+import Cart from './components/pages/Cart';
+import Profile from './components/pages/Profile';
+import Details from './components/pages/Details';
+
 import ImageProduct1 from './assets/contents/image-product-1.jpg'
 import ImageProduct2 from './assets/contents/image-product-2.jpg'
 import ImageProduct3 from './assets/contents/image-product-3.jpg'
 import ImageProduct4 from './assets/contents/image-product-4.jpg'
 import ImageProduct5 from './assets/contents/image-product-5.jpg'
 
-export default function App() {
+function App({cart}) {
   const [offlineStatus, setOfflineStatus] = useState(!navigator.onLine)
   const [isLoading, setIsLoading] = useState(true)
   const [items, setItems] = useState([
@@ -82,7 +87,7 @@ export default function App() {
       {isLoading ? <Splash /> : (
         <>
           {offlineStatus && <Offline />}
-          <Header mode={'main'} />
+          <Header mode={'main'} cart={cart} />
           <Hero />
           <Browse />
           <Arrived items={items} />
@@ -92,5 +97,41 @@ export default function App() {
         </>
       )}
     </>
+  )
+}
+
+export default function Router(){
+  const cachedCart = window.localStorage.getItem('cart')
+  const [cart, setCart] = useState([])
+  function handleAddToCart(item) {
+    const currentIndex = cart.length
+    const newCart = [...cart, {...item, id: currentIndex + 1}]
+    setCart(newCart)
+    window.localStorage.setItem('cart', JSON.stringify(newCart))
+  }
+
+  function handleRemoveCartItem(event, id) {
+    const revisedCart = cart.filter((item) => {
+      return item.id !== id
+    })
+    setCart(revisedCart)
+    window.localStorage.setItem('cart', JSON.stringify(revisedCart))
+  }
+
+  useEffect(() => {
+    if(cachedCart !== null){
+      setCart(JSON.parse(cachedCart))
+    }
+  }, [cachedCart])
+
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<App cart={cart} />} />
+        <Route path='/profile' element={<Profile />} />
+        <Route path='/details/:id' element={<Details handleAddToCart={handleAddToCart} cart={cart} />} />
+        <Route path='/cart' element={<Cart cart={cart} handleRemoveCartItem={handleRemoveCartItem} />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
