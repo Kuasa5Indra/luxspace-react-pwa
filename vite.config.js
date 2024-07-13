@@ -21,6 +21,7 @@ export default defineConfig({
       description: 'Aplikasi Luxspace menggunakan React dan berbasis PWA',
       theme_color: '#ffffff',
       start_url: "/",
+      scope:"/luxspace-react-pwa/",
       display: "standalone",
       background_color: "#FFFFFF",
       icons: [
