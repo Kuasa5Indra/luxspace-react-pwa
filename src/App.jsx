@@ -19,6 +19,7 @@ import ImageProduct2 from './assets/contents/image-product-2.jpg'
 import ImageProduct3 from './assets/contents/image-product-3.jpg'
 import ImageProduct4 from './assets/contents/image-product-4.jpg'
 import ImageProduct5 from './assets/contents/image-product-5.jpg'
+import Success from './components/pages/Success';
 
 function App({cart}) {
   const [offlineStatus, setOfflineStatus] = useState(!navigator.onLine)
@@ -131,6 +132,7 @@ export default function Router(){
         <Route path='/profile' element={<Profile />} />
         <Route path='/details/:id' element={<Details handleAddToCart={handleAddToCart} cart={cart} />} />
         <Route path='/cart' element={<Cart cart={cart} handleRemoveCartItem={handleRemoveCartItem} />} />
+        <Route path='/success' element={<Success />} />
       </Routes>
     </BrowserRouter>
   )
